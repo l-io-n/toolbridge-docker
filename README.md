@@ -1,13 +1,12 @@
 Dockerfile and compose for [Oct4Pie/ToolBridge](https://github.com/oct4pie/toolbridge) based on [commit 1cd2feb](https://github.com/Oct4Pie/toolbridge/commit/1cd2feb5a9d8cf772f1011e7eae78c1bd5baa27c) (Dec 8, 2025)
 
 Steps:
-1. Open `.env` and edit in your real `BACKEND_LLM_API_KEY` and `BACKEND_LLM_BASE_URL`. Don't forget the `/v1` suffix if needed.
+1. Create `.env` (or rename `env.example` to `.env`) and edit in your real `BACKEND_LLM_API_KEY` and `BACKEND_LLM_BASE_URL`. Don't forget the `/v1` suffix if needed.
 2. Run `docker compose up -d --build` in the repo directory.
 3. Point your AI front end to at `http://localhost:3100/v1` and specify model ID if needed.
 
-Notes:
-A. `config.json` also has `tools.passTools: false` by default, which is the right setting for models that do not have or struggle with native tool calls. It just means toolbridge always strips the native tools field and injects textual instructions instead, rather than assuming the backend might partially understand tools. Change if needed.
-B. The `BACKEND_LLM_BASE_URL` environment variable overrides whatever's in config.json's `backends.defaultBaseUrls.openai`
+Note:
+The `BACKEND_LLM_BASE_URL` environment variable overrides whatever's in config.json's `backends.defaultBaseUrls.openai`. Also, `config.json` has `tools.passTools: false` by default, which is the right setting for models that do not have or struggle with native tool calls. It just means toolbridge always strips the native tools field and injects textual instructions instead, rather than assuming the backend might partially understand tools. Change if needed.
 
 -----
 
