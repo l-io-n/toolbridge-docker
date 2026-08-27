@@ -1,0 +1,14 @@
+services:
+  toolbridge:
+    image: toolbridge:local   # or `build: .` if deploying via a Portainer/Podman/Dockhand Git stack
+    container_name: toolbridge
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    environment:
+      BACKEND_LLM_API_KEY: ${BACKEND_LLM_API_KEY}
+      BACKEND_LLM_BASE_URL: ${BACKEND_LLM_BASE_URL}   # overrides config.json's backends.defaultBaseUrls -- edit this in your container manager's env var UI and restart, no rebuild needed
+    volumes:
+      # Still useful for settings without an env var equivalent: tools.passTools,
+      # tools.enableReinjection, reinjectionMessageCount, server.defaultPort, etc.
+      - ./config.json:/app/config.json:ro
