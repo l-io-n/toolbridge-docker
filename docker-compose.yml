@@ -1,6 +1,6 @@
 services:
   toolbridge:
-    image: toolbridge:local   # or `build: .` if deploying via a Portainer/Podman/Dockhand Git stack
+    build: .
     container_name: toolbridge
     restart: unless-stopped
     ports:
